@@ -1,2 +1,2 @@
 # interEHDFoam
-Electrohydrodynamics solver based on OpenFOAM two-phase flow solver interFoam
+Electrohydrodynamics solver based on OpenFOAM 4.1 two-phase flow solver interFoam
