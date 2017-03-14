@@ -1,0 +1,40 @@
+#!/bin/bash
+# Basic installation script for interEHDFoam
+# Uses wmake to compile
+# immiscibleIncompressibleTwoPhaseEHDMixture and
+# interEHDFoam
+#
+# Nima Tofighi (2017), ntofighi@uvic.ca
+
+bf='tput bold'
+rm='tput sgr0'
+
+echo
+echo "$($bf)interEHDFoam $($rm)components installation directories:"
+echo Library: $FOAM_USER_LIBBIN
+echo Application: $FOAM_USER_APPBIN
+echo
+read -p "Press $($bf)any key $($rm)to start installation or $($bf)ctrl+c $($rm)to exit... "
+echo
+
+COMP='no'
+echo "$($bf)Compiling class $($rm)files..."
+cd immiscibleIncompressibleTwoPhaseEHDMixture
+wmake libso && COMP='yes'
+echo
+
+if [ $COMP == 'yes' ]; then
+    COMP='no'
+    echo "$($bf)Compiling solver $($rm)files..."
+    cd ../interEHDFoam
+    wmake && COMP='yes'
+    echo
+fi
+
+if [ $COMP == 'yes' ]; then
+    echo "Compilation $($bf)successful."
+    echo "$($rm)"
+else
+    echo "Compilation $($bf)failed."
+    echo "$($rm)"
+fi
