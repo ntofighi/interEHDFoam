@@ -36,6 +36,9 @@ Description
     For a two-fluid approach see twoPhaseEulerFoam.
 
 \*---------------------------------------------------------------------------*/
+/* Electrohydrodynamics additions by Nima Tofighi (C) 2017
+   ntofighi@uvic.ca
+\*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
 #include "CMULES.H"
