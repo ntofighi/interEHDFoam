@@ -22,7 +22,7 @@ License
     along with OpenFOAM.  If not, see <http://www.gnu.org/licenses/>.
 
 Application
-    interFoam
+    interEHDFoam
 
 Description
     Solver for 2 incompressible, isothermal immiscible fluids using a VOF
