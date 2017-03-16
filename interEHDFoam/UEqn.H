@@ -27,7 +27,7 @@
                   - fvc::snGrad(p_rgh)
 //                   - scalar(0.5)*fvc::interpolate(magSqr(fvc::grad(Ep)))*fvc::snGrad(eps)
                   - scalar(0.5)*magSqr(fvc::snGrad(Ep))*fvc::snGrad(eps)
-                  - fvc::interpolate(fvc::laplacian(eps,Ep))*fvc::snGrad(Ep)
+                  + fvc::interpolate(fvc::laplacian(eps,Ep))*fvc::snGrad(Ep)
                 ) * mesh.magSf()
             )
         );
