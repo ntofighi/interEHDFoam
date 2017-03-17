@@ -1,0 +1,14 @@
+#!/bin/sh
+
+blockMesh
+m4 system/blockMeshDict.regions > system/blockMeshDict
+cp 0/alpha.bubble.orig 0/alpha.bubble
+cp 0/U.orig 0/U
+cp 0/Ep.orig 0/Ep
+funkySetFields -field Ep -expression 'pos().y*1.34' -time 0 -keepPatches
+funkySetFields -field alpha.bubble -expression '1.0' -time 0 -keepPatches -condition '0.1*0.1-pos().x*pos().x-pos().y*pos().y >= 0'
+# setFields
+interEHDFoam
+foamToVTK
+
+#------------------------------------------------------------------------------

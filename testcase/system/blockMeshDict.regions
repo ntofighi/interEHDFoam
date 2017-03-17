@@ -1,0 +1,119 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  4.x                                   |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+// macros
+
+define(sl,1.0) // side length macro
+define(st,0.25) // step length macro
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 1;
+
+vertices
+(
+    (0  0  0)
+    (sl 0  0)
+    (sl sl 0)
+    (0  sl 0)
+    (0  0  0.1)
+    (sl 0  0.1)
+    (sl sl 0.1)
+    (0  sl 0.1)
+    (st 0  0)
+    (st st 0)
+    (0  st 0)
+    (st 0  0.1)
+    (st st 0.1)
+    (0  st 0.1)
+    (sl st 0)
+    (sl st 0.1)
+    (st sl 0)
+    (st sl 0.1)
+);
+
+blocks
+(
+    hex (0 8 9 10 4 11 12 13) (256 256 1) simpleGrading (1 1 1) // Bubble is located here
+    hex (9 14 2 16 12 15 6 17) (128 128 1) simpleGrading (3 3 1) // largest section
+    hex (8 1 14 9 11 5 15 12) (128 256 1) simpleGrading (3 1 1) // flat rectangle
+    hex (10 9 16 3 13 12 17 7) (256 128 1) simpleGrading (1 3 1) // vertical rectangle
+);
+
+edges
+(
+);
+
+boundary
+(
+    bottomWall
+    {
+        type wall;
+        faces
+        (
+            (1 5 11 8)
+            (8 11 4 0)
+        );
+    }
+    topWall
+    {
+        type wall;
+        faces
+        (
+            (3 7 17 16)
+            (16 17 6 2)
+        );
+    }
+    leftWall
+    {
+        type wall;
+        faces
+        (
+            (0 4 13 10)
+            (10 13 7 3)
+        );
+    }
+    rightWall
+    {
+        type wall;
+        faces
+        (
+            (2 6 15 14)
+            (14 15 5 1)
+        );
+    }
+    frontback
+    {
+        type empty;
+        faces
+        (
+            (0 10 9 8)
+            (10 3 16 9)
+            (9 16 2 14)
+            (8 9 14 1)
+            (4 11 12 13)
+            (11 5 15 12)
+            (13 12 17 7)
+            (12 15 6 17)
+        );
+    }
+);
+
+mergePatchPairs
+(
+);
+
+
+// ************************************************************************* //
