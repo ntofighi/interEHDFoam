@@ -31,17 +31,22 @@ boundaryField
         type            slip;
     }
 
-    leftWall
+    roundWall
     {
         type            slip;
     }
     
-    rightWall
+    ypWall
     {
-        type            slip;
+        type            wedge;
+    }
+    
+    ymWall
+    {
+        type            wedge;
     }
 
-    frontback
+    axisWall
     {
         type            empty;
     }

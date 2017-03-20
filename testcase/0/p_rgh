@@ -30,18 +30,27 @@ boundaryField
         type            zeroGradient;
     }
 
-    rightWall
-    {
-        type            fixedValue;
-        value           uniform 0;
-    }
-    
-    leftWall
+//     roundWall
+//     {
+//         type            fixedValue;
+//         value           uniform 0;
+//     }
+    roundWall
     {
         type            zeroGradient;
     }
+    
+    ypWall
+    {
+        type            wedge;
+    }
 
-    frontback
+    ymWall
+    {
+        type            wedge;
+    }
+    
+    axisWall
     {
         type            empty;
     }

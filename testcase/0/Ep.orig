@@ -24,33 +24,38 @@ boundaryField
 //     topWall
 //     {
 //         type            groovyBC;
-//         variables       "xp=pos().x;Efield=1.34;";
-//         valueExpression "Efield*xp";
-//         value           uniform 0;
+//         variables       "zp=pos().z;Efield=1.34;";
+//         valueExpression "Efield*zp";
+//         value           uniform 1.34;
 //     }
     topWall
     {
-        type            zeroGradient;
+        type            fixedValue;
+        value           uniform 0.67;
     }
 
     bottomWall
     {
+        type            fixedValue;
+        value           uniform -0.67;
+    }
+
+    roundWall
+    {
         type            zeroGradient;
     }
-
-    leftWall
+    
+    ymWall
     {
-        type            fixedValue;
-        value           uniform 0;
+        type            wedge;
     }
     
-    rightWall
+    ypWall
     {
-        type            fixedValue;
-        value           uniform 1.34;
+        type            wedge;
     }
 
-    frontback
+    axisWall
     {
         type            empty;
     }
