@@ -83,6 +83,7 @@ volScalarField eps
     ),
     alpha1*eps1 + alpha2*eps2
 );
+// eps.oldTime();
 
 // ADD
 volScalarField sig
@@ -96,6 +97,7 @@ volScalarField sig
     ),
     alpha1*sig1 + alpha2*sig2
 );
+// sig.oldTime();
 
 // ADD
 volScalarField Ec
@@ -105,10 +107,12 @@ volScalarField Ec
         "Ec",
         runTime.timeName(),
         mesh,
-        IOobject::NO_READ,
+//         IOobject::NO_READ
+        IOobject::MUST_READ,
         IOobject::AUTO_WRITE
     ),
-    fvc::laplacian(eps,Ep)
+    mesh
+//     - fvc::laplacian(eps,Ep)
 );
 
 // ADD
@@ -124,63 +128,47 @@ volVectorField Ef
     ),
     -fvc::grad(Ep)
 );
-
-// ADD
-volVectorField Efp
-(
-    IOobject
-    (
-        "Efp",
-        runTime.timeName(),
-        mesh,
-        IOobject::NO_READ,
-        IOobject::AUTO_WRITE
-    ),
-    -scalar(0.5)*magSqr(Ef)*fvc::grad(eps)
-);
-
-volVectorField Efc
-(
-    IOobject
-    (
-        "Efc",
-        runTime.timeName(),
-        mesh,
-        IOobject::NO_READ,
-        IOobject::AUTO_WRITE
-    ),
-    -fvc::laplacian(eps,Ep)*fvc::grad(Ep)
-);
-
-volVectorField Eft
-(
-    IOobject
-    (
-        "Eft",
-        runTime.timeName(),
-        mesh,
-        IOobject::NO_READ,
-        IOobject::AUTO_WRITE
-    ),
-    -scalar(0.5)*magSqr(Ef)*fvc::grad(eps)-fvc::laplacian(eps,Ep)*fvc::grad(Ep)
-);
-
+// 
 // // ADD
-// volScalarField placeholder
+// volVectorField Efp
 // (
 //     IOobject
 //     (
-//         "placeholder",
+//         "Efp",
 //         runTime.timeName(),
 //         mesh,
 //         IOobject::NO_READ,
 //         IOobject::AUTO_WRITE
 //     ),
-// //     mag(fvc::grad(U))
-// //     fvc::grad(eps)
-// //     fvc::laplacian(eps,sig)
-// //     mag(fvc::grad(Ep))
-//     mesh
+//     -scalar(0.5)*magSqr(Ef)*fvc::grad(eps)
+// );
+// 
+// // ADD
+// volVectorField Efc
+// (
+//     IOobject
+//     (
+//         "Efc",
+//         runTime.timeName(),
+//         mesh,
+//         IOobject::NO_READ,
+//         IOobject::AUTO_WRITE
+//     ),
+//     -fvc::laplacian(eps,Ep)*fvc::grad(Ep)
+// );
+// 
+// // ADD
+// volVectorField Eft
+// (
+//     IOobject
+//     (
+//         "Eft",
+//         runTime.timeName(),
+//         mesh,
+//         IOobject::NO_READ,
+//         IOobject::AUTO_WRITE
+//     ),
+//     -scalar(0.5)*magSqr(Ef)*fvc::grad(eps)-fvc::laplacian(eps,Ep)*fvc::grad(Ep)
 // );
 
 // Mass flux

@@ -18,6 +18,11 @@
         (
             mixture.surfaceTensionForce()
           - ghf*fvc::snGrad(rho)
+//           - scalar(0.5)*fvc::interpolate(magSqr(fvc::grad(Ep)))*fvc::snGrad(eps)
+//           - scalar(0.5)*fvc::interpolate(magSqr(Ef))*fvc::snGrad(eps)
+//           - scalar(0.5)*magSqr(fvc::snGrad(Ep))*fvc::snGrad(eps)
+//           + fvc::interpolate(fvc::laplacian(eps,Ep))*fvc::snGrad(Ep)
+//           - fvc::interpolate(Ec)*fvc::snGrad(Ep)
         )*rAUf*mesh.magSf()
     );
 
