@@ -19,9 +19,9 @@ define(calc, [esyscmd(perl -e 'use Math::Trig; print ($1)')]) dnl>
 
 define(thp,1)   // + slice angle
 define(thm,-1)  // - slice angle
-define(ll,0.5)  // side length macro
-define(hp,0.5)  // + height macro
-define(hm,-0.5) // - height macro
+define(ll,1.0)  // side length macro
+define(hp,1.0)  // + height macro
+define(hm,-1.0) // - height macro
 define(sh,0.0)  // step position macro
 define(xx, calc(ll*cos(deg2rad(thp)))) // + x-side of slice
 define(yp, calc(ll*sin(deg2rad(thp)))) // + y-side of slice
@@ -45,8 +45,8 @@ vertices
 
 blocks
 (
-    hex (0 1 4 0 3 2 5 3) (128 1 128) simpleGrading (4 1 0.25) // lower half
-    hex (3 2 5 3 7 6 8 7) (128 1 128) simpleGrading (4 1 4) // upper half
+    hex (0 1 4 0 3 2 5 3) (200 1 200) simpleGrading (5 1 0.2) // lower half
+    hex (3 2 5 3 7 6 8 7) (200 1 200) simpleGrading (5 1 5) // upper half
 );
 
 edges
