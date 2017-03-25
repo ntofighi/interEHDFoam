@@ -83,7 +83,6 @@ volScalarField eps
     ),
     alpha1*eps1 + alpha2*eps2
 );
-// eps.oldTime();
 
 // ADD
 volScalarField sig
@@ -97,7 +96,6 @@ volScalarField sig
     ),
     alpha1*sig1 + alpha2*sig2
 );
-// sig.oldTime();
 
 // ADD
 volScalarField Ec
@@ -107,12 +105,10 @@ volScalarField Ec
         "Ec",
         runTime.timeName(),
         mesh,
-//         IOobject::NO_READ
-        IOobject::MUST_READ,
+        IOobject::NO_READ
         IOobject::AUTO_WRITE
     ),
-    mesh
-//     - fvc::laplacian(eps,Ep)
+    - fvc::laplacian(eps,Ep)
 );
 
 // ADD
@@ -128,7 +124,7 @@ volVectorField Ef
     ),
     -fvc::grad(Ep)
 );
-// 
+
 // // ADD
 // volVectorField Efp
 // (

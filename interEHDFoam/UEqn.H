@@ -7,8 +7,8 @@
       + turbulence->divDevRhoReff(rho, U)
      ==
         fvOptions(rho, U)
-      - scalar(0.5)*magSqr(Ef)*fvc::grad(eps)
-      + Ec*Ef
+//       - scalar(0.5)*magSqr(Ef)*fvc::grad(eps)
+//       + Ec*Ef
       
     );
 
@@ -28,11 +28,8 @@
                     mixture.surfaceTensionForce()
                   - ghf*fvc::snGrad(rho)
                   - fvc::snGrad(p_rgh)
-//                   - scalar(0.5)*fvc::interpolate(magSqr(fvc::grad(Ep)))*fvc::snGrad(eps)
-//                   - scalar(0.5)*fvc::interpolate(magSqr(Ef))*fvc::snGrad(eps)
-//                   - scalar(0.5)*magSqr(fvc::snGrad(Ep))*fvc::snGrad(eps)
-//                   + fvc::interpolate(fvc::laplacian(eps,Ep))*fvc::snGrad(Ep)
-//                   - fvc::interpolate(Ec)*fvc::snGrad(Ep)
+                  - scalar(0.5)*fvc::interpolate(magSqr(Ef))*fvc::snGrad(eps) // Efp
+                  - fvc::interpolate(Ec)*fvc::snGrad(Ep) // Efc
                 ) * mesh.magSf()
             )
         );
